@@ -1,15 +1,32 @@
-// Complete the Index page component here
-// Use chakra-ui
-import { Button } from "@chakra-ui/react"; // example
-import { FaPlus } from "react-icons/fa"; // example - use react-icons/fa for icons
+import React, { useState, useEffect } from 'react';
+import { Box, Text, Flex } from '@chakra-ui/react';
 
 const Index = () => {
-  // TODO: Create the website here!
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <Button>
-      Hello world! <FaPlus />
-    </Button>
-  ); // example
+    <Flex
+      height="100vh"
+      align="center"
+      justify="center"
+      bg="gray.900"
+      color="white"
+    >
+      <Box textAlign="center">
+        <Text fontSize={{ base: "6xl", md: "9xl" }} fontFamily="monospace">
+          {time.toLocaleTimeString()}
+        </Text>
+      </Box>
+    </Flex>
+  );
 };
 
 export default Index;
